@@ -9,7 +9,7 @@ export default function Editor() {
             {
                 [1, 2, 3, 4, 5, 6].map((el) => {
                     return <View style={styles.card}>
-
+                        <Text style={{color: "#fff"}}> {el} </Text>
                     </View>
 
                 })
