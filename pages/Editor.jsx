@@ -1,10 +1,11 @@
 import { View, StyleSheet } from "react-native"
 import CardImage from "../components/CardImage"
-import {useBoard} from "../BoardContext"
+import { useBoard } from "../BoardContext"
+
 
 export default function Editor() {
 
-    const {board} = useBoard();
+    const { board } = useBoard();
 
     return (
         <View style={styles.container}>
