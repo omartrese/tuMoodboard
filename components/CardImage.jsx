@@ -34,7 +34,12 @@ export default function CardImage({ id }) {
 
     return (
 
-        (board.images[id] ? <Image source={{ uri: board.images[id] }} style={styles.card} /> : <Pressable style={styles.card} onPress={pickImage} />)
+        (board.images[id] ? 
+        <Pressable style={styles.card} onPress={pickImage}>
+            <Image source={{ uri: board.images[id] }} style={styles.cardImg} />
+        </Pressable> 
+        : <Pressable style={styles.card} onPress={pickImage} />)
+        // (board.images[id] ? <Image source={{ uri: board.images[id] }} style={styles.card} /> : <Pressable style={styles.card} onPress={pickImage} />)
     )
 }
 
@@ -46,4 +51,9 @@ export const styles = StyleSheet.create({
         marginHorizontal: 6,
         marginVertical: 10
     },
+
+    cardImg: {
+        width: "100%",
+        height: "100%",
+    }
 })
