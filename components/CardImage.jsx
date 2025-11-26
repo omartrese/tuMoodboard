@@ -1,9 +1,10 @@
 import { Pressable, Image, StyleSheet, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
+import { useBoard } from "../BoardContext";
 
-export default function CardImage() {
-    const [image, setImage] = useState(null);
+export default function CardImage({ id }) {
+    const { board, setBoard } = useBoard();
 
     const pickImage = async () => {
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -20,16 +21,20 @@ export default function CardImage() {
             quality: 1,
         });
 
-        console.log(result);
-
+        // console.log("Image " + id + " changed");
         if (!result.canceled) {
-            setImage(result.assets[0].uri);
+            setBoard(prev => {
+                const newImages = [...prev.images];
+                newImages[id] = result.assets[0].uri;
+
+                return { ...prev, images: newImages };
+            });
         }
     };
 
     return (
 
-            (image ? <Image source={{ uri: image }} style={styles.card} /> : <Pressable style={styles.card} title="Pick an image from camera roll" onPress={pickImage} />)
+        (board.images[id] ? <Image source={{ uri: board.images[id] }} style={styles.card} /> : <Pressable style={styles.card} onPress={pickImage} />)
     )
 }
 
