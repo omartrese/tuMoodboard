@@ -8,23 +8,34 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
             {
-                !images &&
+                images.length === 0 &&
                 <View>
                     <Text style={styles.title}>No moodboards yet!</Text>
                     <Text style={styles.subtitle}>Create your first moodboard!</Text>
                     <TouchableOpacity style={styles.editorBtn} onPress={() => navigation.navigate("Editor")}>
-                        <Text style={{ fontSize: 18 }}>Go Editor</Text>
+                        <Text style={{ fontSize: 18 }}>New moodboard</Text>
                     </TouchableOpacity>
                 </View>
             }
 
             {
-                images &&
-                images.map((image, index) => {
-                    return <Image key={index} source={{ uri: image }} style={{ width: 200, height: 200 }} />
-                })
+                images && (
+                    <View style={styles.boardContainer}>
+
+                        {
+
+                            images.map((image, index) => {
+                                return <Image key={index} source={{ uri: image }} style={{ width: "50%", height: 200 }} />
+                            })
+                        }
+
+                    </View>
+                )
             }
 
+            <TouchableOpacity style={styles.editorBtn} onPress={() => navigation.navigate("Editor")}>
+                <Text style={{ fontSize: 18 }}>Go Editor</Text>
+            </TouchableOpacity>
         </View>
     )
 
@@ -36,6 +47,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffd7d7ff",
         alignItems: "center",
         justifyContent: "center",
+    },
+
+    boardContainer: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        marginHorizontal: 10
     },
 
     title: {
