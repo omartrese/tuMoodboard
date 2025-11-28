@@ -1,9 +1,8 @@
 import { Pressable, Image, StyleSheet, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
 import { useBoard } from "../BoardContext";
 
-export default function CardImage({ id }) {
+export default function EditableCard({ id }) {
     const { board, setBoard } = useBoard();
 
     const pickImage = async () => {

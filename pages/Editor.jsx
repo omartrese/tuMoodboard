@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native"
-import CardImage from "../components/CardImage"
+import EditableCard from "../components/EditableCard"
 import { useBoard } from "../BoardContext"
 
 
@@ -11,7 +11,7 @@ export default function Editor() {
         <View style={styles.container}>
             {
                 (Array.from({ length: board.size }, (_, i) => i)).map((el) => {
-                    return <CardImage key={el} id={el} />
+                    return <EditableCard key={el} id={el} />
                 })
             }
         </View>
